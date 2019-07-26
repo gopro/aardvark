@@ -1,4 +1,3 @@
-import json
 import os
 import Queue
 import re
@@ -6,7 +5,6 @@ import threading
 
 import better_exceptions # noqa
 from bunch import Bunch
-from distutils.spawn import find_executable
 from flask import current_app
 from flask_script import Manager, Command, Option
 from swag_client.backend import SWAGManager
@@ -92,6 +90,7 @@ def persist_aa_data(app, aa_data):
     with app.app_context():
         if not aa_data:
             app.logger.warn('Cannot persist Access Advisor Data as no data was collected.')
+            raise Exception('Cannot persist Access Advisor Data as no data was collected.')
             return
 
         arn_cache = {}
@@ -292,7 +291,7 @@ def _prep_accounts(account_names):
 
     # create a new copy of the account_names list so we can remove accounts as needed
     for account in list(account_names):
-        if re.match('\d{12}', account):
+        if re.match(r'\d{12}', account):
             account_names.remove(account)
             matching_accounts.append(account)
 

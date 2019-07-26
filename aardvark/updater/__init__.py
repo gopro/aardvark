@@ -171,6 +171,7 @@ class AccountToUpdate(object):
                 if last_auth:
                     last_auth = int(time.mktime(last_auth.timetuple()) * 1000)
                 else:
+                    self.current_app.logger.error('ARN: {arn} lastAuthenticated is about to be set to 0 for the following item: {d}'.format(arn=role_arn, d=detail))
                     last_auth = 0
 
                 updated_item['LastAuthenticated'] = last_auth
@@ -187,4 +188,3 @@ class AccountToUpdate(object):
                 job_id=job_id,
                 arn=role_arn,
             ))
-
