@@ -3,4 +3,4 @@ AWS_CONTAINER_CREDENTIALS_FULL_URI="ENV_AWS_CONTAINER_CREDENTIALS_FULL_URI"
 AWS_CONTAINER_AUTHORIZATION_TOKEN="ENV_AWS_CONTAINER_AUTHORIZATION_TOKEN"
 
 # redirect to stdout of pid 1, which in our case (docker) will cause the output to be visible for docker logs
-AARDVARK_CRONJOB_SPEC root /usr/local/bin/aardvark update -a AARDVARK_ACCOUNTS >> /proc/fd/1/1
+AARDVARK_CRONJOB_SPEC root /usr/local/bin/aardvark update -a AARDVARK_ACCOUNTS >> /proc/1/fd/1
