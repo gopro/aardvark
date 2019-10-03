@@ -9,7 +9,8 @@ ARG AARDVARK_DATA_DIR="/usr/share/aardvark-data"
 ENV AARDVARK_ACCOUNTS=''
 ENV AARDVARK_CRONJOB_SPEC='0 0 * * *'
 
-RUN apt install -y cron
+RUN apt install -y cron && \
+    pip install -r gopro-requirements.txt
 
 COPY aardvark-collector.cronjob /etc/cron.d/aardvark-collector
 
