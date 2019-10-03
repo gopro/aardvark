@@ -9,6 +9,7 @@ echo "Creating the collector cronjob..."
             -e "s#ENV_AWS_CONTAINER_CREDENTIALS_RELATIVE_URI#$AWS_CONTAINER_CREDENTIALS_RELATIVE_URI#g" \
             -e "s#ENV_AWS_CONTAINER_CREDENTIALS_FULL_URI#$AWS_CONTAINER_CREDENTIALS_FULL_URI#g" \
             -e "s#ENV_AWS_CONTAINER_AUTHORIZATION_TOKEN#$AWS_CONTAINER_AUTHORIZATION_TOKEN#g" \
+            -e "s/ENV_DATADOG_SECRET/$DATADOG_SECRET/g" \
             /etc/cron.d/aardvark-collector
 echo "Starting cron daemon..."
 /usr/sbin/cron -f
