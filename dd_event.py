@@ -53,4 +53,4 @@ if __name__ == '__main__':
     cl_sm = session.client('secretsmanager', region_name=aws_region)
     datadog_keys = json.loads(get_sm_secret(secret_id=datadog_secret, cl=cl_sm))
     datadog.initialize(**datadog_keys)
-    datadog.api.Event.create(DATADOG_EVENTS[args.event])
+    datadog.api.Event.create(**DATADOG_EVENTS[args.event])
